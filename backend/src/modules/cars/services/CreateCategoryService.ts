@@ -1,5 +1,4 @@
-import { ICreateCategoryDTO } from '../dtos/ICreateCategoryDTO';
-import { ICategoriesRepository } from '../repositories/ICategoriesRepository';
+import { ICategoriesRepository, ICreateCategoryDTO } from '../repositories/ICategoriesRepository';
 
 class CreateCategoryService {
   constructor(
