@@ -6,8 +6,8 @@ class ListCategoriesController {
     private listCategoriesUseCases: ListCategoriesUseCase
   ) { }
 
-  handle(request: Request, response: Response): Response {
-    const categories = this.listCategoriesUseCases.execute();
+  public async handle(request: Request, response: Response): Promise<Response> {
+    const categories = await this.listCategoriesUseCases.execute();
     return response.json(categories);
   }
 }
