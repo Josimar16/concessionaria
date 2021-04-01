@@ -1,7 +1,10 @@
+import { inject, injectable } from 'tsyringe';
 import { ICategoriesRepository, ICreateCategoryDTO } from '../../repositories/ICategoriesRepository';
 
+@injectable()
 class CreateCategoryUseCase {
   constructor(
+    @inject('CategoriesRepository')
     private categoriesRepository: ICategoriesRepository
   ) { }
 
