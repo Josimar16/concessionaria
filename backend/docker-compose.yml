@@ -6,7 +6,7 @@ services:
     container_name: database_rentx
     restart: always
     ports:
-      - 9001:5432
+      - 5432:5432
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=ignite
@@ -19,8 +19,10 @@ services:
   app:
     build: .
     container_name: rentx
+    restart: always
     ports:
       - 3333:3333
+      - 9229:9229
     volumes:
       - .:/usr/app
     networks:
