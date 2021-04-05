@@ -1,6 +1,6 @@
 import { getRepository, Repository } from 'typeorm';
-import { Category } from '../../entities/Category';
-import { ICategoriesRepository, ICreateCategoryDTO } from '../ICategoriesRepository';
+import { Category } from '../entities/Category';
+import { ICategoriesRepository, ICreateCategoryDTO } from '../../../repositories/ICategoriesRepository';
 
 class CategoriesRepository implements ICategoriesRepository {
   private repository: Repository<Category>;
@@ -14,7 +14,7 @@ class CategoriesRepository implements ICategoriesRepository {
     await this.repository.save(category);
   }
 
-  public async list(): Promise<Category[]> {
+  public async find(): Promise<Category[]> {
     return await this.repository.find();
   }
 

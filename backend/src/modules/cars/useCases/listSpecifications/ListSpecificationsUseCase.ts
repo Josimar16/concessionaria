@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import { Specification } from '../../entities/Specification';
+import { Specification } from '../../infra/typeorm/entities/Specification';
 import { ISpecificationsRepository } from '../../repositories/ISpecificationsRepository';
 
 @injectable()
@@ -9,7 +9,7 @@ class ListSpecificationsUseCase {
     private specificationsRepository: ISpecificationsRepository) { }
 
   public async execute(): Promise<Specification[]> {
-    const specifications = await this.specificationsRepository.list();
+    const specifications = await this.specificationsRepository.find();
     return specifications;
   }
 }
