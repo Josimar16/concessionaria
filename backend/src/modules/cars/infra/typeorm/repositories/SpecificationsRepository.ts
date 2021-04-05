@@ -1,6 +1,6 @@
 import { getRepository, Repository } from 'typeorm';
-import { Specification } from '../../entities/Specification';
-import { ISpecificationsRepository, ICreateSpecificationDTO } from '../ISpecificationsRepository';
+import { Specification } from '../entities/Specification';
+import { ISpecificationsRepository, ICreateSpecificationDTO } from '../../../repositories/ISpecificationsRepository';
 
 class SpecificationsRepository implements ISpecificationsRepository {
   private repository: Repository<Specification>;
@@ -20,7 +20,7 @@ class SpecificationsRepository implements ISpecificationsRepository {
     return specification;
   }
 
-  public async list(): Promise<Specification[]> {
+  public async find(): Promise<Specification[]> {
     return this.repository.find();
   }
 }
