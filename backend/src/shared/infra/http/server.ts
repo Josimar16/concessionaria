@@ -1,10 +1,12 @@
 import 'reflect-metadata';
+import 'dotenv/config';
 import express, { NextFunction, Request, Response } from 'express';
+import 'express-async-errors';
 import swaggerUi from 'swagger-ui-express';
 import '../typeorm';
 import '../../container';
-import { router } from './routes';
 import { AppError } from '../../errors/AppError';
+import { router } from './routes';
 import swaggerFile from '../../../swagger.json';
 
 const app = express();
@@ -30,6 +32,6 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
   });
 });
 
-app.listen(3333, () => {
-  console.log('Listening in port 3333 🚀');
+app.listen(process.env.APP_PORT || 3333, () => {
+  console.log(`Listening in port ${process.env.APP_PORT || 3333} 🚀`);
 });
