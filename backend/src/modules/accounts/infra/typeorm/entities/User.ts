@@ -18,7 +18,7 @@ class User {
   @Column()
   driver_license: string;
 
-  @Column({ default: false })
+  @Column({ default: false, name: 'is_admin' })
   isAdmin: boolean;
 
   @Column({ nullable: true })
