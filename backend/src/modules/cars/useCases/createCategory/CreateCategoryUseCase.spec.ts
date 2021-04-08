@@ -29,8 +29,8 @@ describe('Create Category', () => {
   it('should not be able to create a new category with name exists', async () => {
     expect(async () => {
       const category: ICreateCategoryDTO = {
-        name: 'Sedan',
-        description: 'Categória Sedan'
+        name: 'Test',
+        description: 'Description test'
       }
       await createCategoryUseCase.execute({
         name: category.name,
