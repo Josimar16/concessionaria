@@ -1,7 +1,7 @@
-import { AppError } from "../../../../shared/errors/AppError";
-import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
-import { FakeHashProvider } from "../../providers/HashProvider/fakes/FakeHashProvider";
-import { FakeUsersRepository } from "../../repositories/fakes/FakeUsersRepository";
+import { AppError } from "@errors/AppError";
+import { ICreateUserDTO } from "@modules/accounts/dtos/ICreateUserDTO";
+import { FakeHashProvider } from "@modules/accounts/providers/HashProvider/fakes/FakeHashProvider";
+import { FakeUsersRepository } from "@modules/accounts/repositories/fakes/FakeUsersRepository";
 import { CreateUserUseCase } from "../createUser/CreateUseUseCase";
 import { AuthenticateUserUseCase } from "./AuthenticateUserUseCase";
 
