@@ -1,9 +1,9 @@
 import { sign } from "jsonwebtoken";
 import { injectable, inject } from "tsyringe";
-import { AppError } from "../../../../shared/errors/AppError";
-import { User } from "../../infra/typeorm/entities/User";
-import { IHashProvider } from "../../providers/HashProvider/models/IHashProvider";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
+import { AppError } from '@errors/AppError';
+import { User } from "@modules/accounts/infra/typeorm/entities/User";
+import { IHashProvider } from "@modules/accounts/providers/HashProvider/models/IHashProvider";
+import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
 
 interface IRequest {
   email: string;
@@ -29,7 +29,7 @@ class AuthenticateUserUseCase {
     if (!passwordMatch) {
       throw new AppError('Email or password incorrect');
     }
-    const token = sign({}, process.env.APP_JWT_SECRET || '', {
+    const token = sign({}, process.env.APP_JWT_SECRET || 'jwt_secret', {
       subject: user.id,
       expiresIn: '1d'
     })
