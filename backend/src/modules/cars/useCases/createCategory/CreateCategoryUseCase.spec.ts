@@ -1,6 +1,6 @@
-import { AppError } from "../../../../shared/errors/AppError";
-import { FakeCategoriesRepository } from "../../repositories/fakes/FakeCategoriesRepository";
-import { ICreateCategoryDTO } from "../../repositories/ICategoriesRepository";
+import { AppError } from "@errors/AppError";
+import { FakeCategoriesRepository } from "@modules/cars/repositories/fakes/FakeCategoriesRepository";
+import { ICreateCategoryDTO } from "@modules/cars/repositories/ICategoriesRepository";
 import { CreateCategoryUseCase } from "./CreateCategoryUseCase";
 
 let createCategoryUseCase: CreateCategoryUseCase;
