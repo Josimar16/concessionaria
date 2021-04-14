@@ -27,7 +27,7 @@ class FakeSpecificationsRepository implements ISpecificationsRepository {
     return specifications;
   }
 
-  async findByIds(ids: string[]): Promise<Specification[]> {
+  async findByIDs(ids: string[]): Promise<Specification[]> {
     const specifications = this.specifications.filter(specification => ids.includes(specification.id));
 
     return specifications;

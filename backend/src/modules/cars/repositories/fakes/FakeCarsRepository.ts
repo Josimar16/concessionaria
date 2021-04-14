@@ -52,6 +52,11 @@ class FakeCarsRepository implements ICarsRepository {
     return cars;
   }
 
+  public async findByID(id: string): Promise<Car> {
+    const car = this.cars.find((car) => car.id === id);
+    return car;
+  }
+
 }
 
 export { FakeCarsRepository }
