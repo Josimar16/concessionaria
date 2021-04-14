@@ -4,7 +4,7 @@ import { ICreateSpecificationDTO, ISpecificationsRepository } from '../ISpecific
 class FakeSpecificationsRepository implements ISpecificationsRepository {
   private specifications: Specification[] = [];
 
-  async create({ name, description }: ICreateSpecificationDTO): Promise<void> {
+  async create({ name, description }: ICreateSpecificationDTO): Promise<Specification> {
     const specification = new Specification();
 
     Object.assign({
@@ -14,7 +14,7 @@ class FakeSpecificationsRepository implements ISpecificationsRepository {
 
     this.specifications.push(specification);
 
-    return;
+    return specification;
   }
 
   async find(): Promise<Specification[]> {
@@ -27,7 +27,7 @@ class FakeSpecificationsRepository implements ISpecificationsRepository {
     return specifications;
   }
 
-  async findByIds(ids: string[]): Promise<Specification[]> {
+  async findByIDs(ids: string[]): Promise<Specification[]> {
     const specifications = this.specifications.filter(specification => ids.includes(specification.id));
 
     return specifications;

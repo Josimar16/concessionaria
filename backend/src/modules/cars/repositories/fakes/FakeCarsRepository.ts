@@ -12,7 +12,9 @@ class FakeCarsRepository implements ICarsRepository {
     fine_amount,
     license_plate,
     brand,
-    category_id
+    category_id,
+    specifications,
+    id
   }: ICreateCarDTO): Promise<Car> {
     const car = new Car();
 
@@ -24,6 +26,8 @@ class FakeCarsRepository implements ICarsRepository {
       license_plate,
       brand,
       category_id,
+      specifications,
+      id
     });
 
     this.cars.push(car);
@@ -50,6 +54,11 @@ class FakeCarsRepository implements ICarsRepository {
         return null;
       });
     return cars;
+  }
+
+  public async findByID(id: string): Promise<Car> {
+    const car = this.cars.find((car) => car.id === id);
+    return car;
   }
 
 }
