@@ -1,14 +1,14 @@
 import { FakeCarsRepository } from "@modules/cars/repositories/fakes/FakeCarsRepository";
-import { ListCarsUseCase } from "./listCarsUseCase";
+import { ListAvailableCarsUseCase } from "./ListAvailableCarsUseCase";
 
-let listCarsUseCase: ListCarsUseCase;
+let listAvailableCarsUseCase: ListAvailableCarsUseCase;
 let fakeCarsRepository: FakeCarsRepository;
 
 describe('List Cars', () => {
 
   beforeEach(() => {
     fakeCarsRepository = new FakeCarsRepository();
-    listCarsUseCase = new ListCarsUseCase(fakeCarsRepository);
+    listAvailableCarsUseCase = new ListAvailableCarsUseCase(fakeCarsRepository);
   });
 
   it('should be able to list all available cars', async () => {
@@ -22,7 +22,7 @@ describe('List Cars', () => {
       category_id: 'category',
     });
 
-    const cars = await listCarsUseCase.execute({});
+    const cars = await listAvailableCarsUseCase.execute({});
 
     expect(cars).toEqual([car]);
   });
@@ -38,7 +38,7 @@ describe('List Cars', () => {
       category_id: 'category',
     });
 
-    const cars = await listCarsUseCase.execute({
+    const cars = await listAvailableCarsUseCase.execute({
       name: 'Car 2'
     });
 
@@ -56,7 +56,7 @@ describe('List Cars', () => {
       category_id: '12345',
     });
 
-    const cars = await listCarsUseCase.execute({
+    const cars = await listAvailableCarsUseCase.execute({
       category_id: '12345'
     });
 
@@ -74,7 +74,7 @@ describe('List Cars', () => {
       category_id: 'category',
     });
 
-    const cars = await listCarsUseCase.execute({
+    const cars = await listAvailableCarsUseCase.execute({
       brand: 'Brand_test'
     });
 
