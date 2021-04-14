@@ -1,19 +1,11 @@
-import { createConnection } from 'typeorm';
+import { Connection, createConnection, getConnectionOptions } from 'typeorm';
 
-createConnection({
-  type: "postgres",
-  port: 5432,
-  host: "localhost",
-  username: "postgres",
-  password: "jj1010aa",
-  database: "rentx",
-  entities: [
-    "./src/modules/**/infra/typeorm/entities/**.ts"
-  ],
-  migrations: [
-    "./src/shared/infra/typeorm/migrations/*.ts"
-  ],
-  cli: {
-    "migrationsDir": "./src/shared/infra/typeorm/migrations"
-  }
-});
+export default async (host = 'localhost'): Promise<Connection> => {
+  const defaultOptions = await getConnectionOptions();
+
+  return createConnection(
+    Object.assign(defaultOptions, {
+      host,
+    })
+  );
+}
