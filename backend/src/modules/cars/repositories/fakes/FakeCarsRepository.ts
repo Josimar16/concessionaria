@@ -5,11 +5,6 @@ import { ICarsRepository } from "../ICarsRepository";
 class FakeCarsRepository implements ICarsRepository {
   private cars: Car[] = [];
 
-  public async findByLicensePlate(license_plate: string): Promise<Car> {
-    const car = this.cars.find(car => car.license_plate === license_plate);
-    return car;
-  }
-
   public async create({
     name,
     description,
@@ -34,6 +29,27 @@ class FakeCarsRepository implements ICarsRepository {
     this.cars.push(car);
 
     return car;
+  }
+
+  public async findByLicensePlate(license_plate: string): Promise<Car> {
+    const car = this.cars.find(car => car.license_plate === license_plate);
+    return car;
+  }
+
+  public async findAvailable(category_id?: string, brand?: string, name?: string): Promise<Car[]> {
+    const cars = this.cars
+      .filter((car) => {
+        if (
+          car.available === true ||
+          ((brand && car.brand === brand) ||
+            (category_id && car.category_id === category_id) ||
+            (name && car.name === name))
+        ) {
+          return car;
+        }
+        return null;
+      });
+    return cars;
   }
 
 }
