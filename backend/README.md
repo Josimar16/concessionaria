@@ -27,31 +27,31 @@
 
 **_RF_**
 
-- [] Deve ser possível cadastrar uma especificação para um carro.
-- [] Deve ser possível listar todas as especificações.
-- [] Deve ser possível listar todos os carros.
+- [x] Deve ser possível cadastrar uma especificação para um carro.
+- [x] Deve ser possível listar todas as especificações.
+- [x] Deve ser possível listar todos os carros.
 
 **_RN_**
 
-- [] Não deve ser possível cadastrar uma especificação para um carro não cadastrado.
-- [] Não deve ser possível cadastrar uma especificação já existente para o mesmo carro.
-- [] O usuário responsável pelo cadastro deve ser um usuário administrador.
+- [x] Não deve ser possível cadastrar uma especificação para um carro não cadastrado.
+- [x] Não deve ser possível cadastrar uma especificação já existente para o mesmo carro.
+- [x] O usuário responsável pelo cadastro deve ser um usuário administrador.
 
 # Cadastro de imagens do carro
 
 **_RF_**
 
-- [] Deve ser possível cadastrar a imagem do carro.
+- [x] Deve ser possível cadastrar a imagem do carro.
 
 **_RNF_**
 
-- [] Utilizar o multer para upload dos arquivos.
-- [] Deve ser possível listar todos os carros.
+- [x] Utilizar o multer para upload dos arquivos.
+- [x] Deve ser possível listar todos os carros.
 
 **_RN_**
 
-- [] O usuário deve poder cadastrar mais de uma imagem para o mesmo carro.
-- [] O usuário responsável pelo cadastro deve ser um usuário administrador.
+- [x] O usuário deve poder cadastrar mais de uma imagem para o mesmo carro.
+- [x] O usuário responsável pelo cadastro deve ser um usuário administrador.
 
 # Aluguel
 
