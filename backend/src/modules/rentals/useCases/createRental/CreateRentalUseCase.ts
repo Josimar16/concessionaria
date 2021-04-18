@@ -1,16 +1,17 @@
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
-
+import { inject, injectable } from "tsyringe";
+import { AppError } from "@shared/errors/AppError";
 import { ICreateRentalDTO } from "@modules/rentals/dtos/ICreateRentalDTO";
 import { Rental } from "@modules/rentals/infra/typeorm/entities/Rental";
+import { IDateProvider } from "@modules/rentals/providers/DateProvider/models/IDateProvider";
 import { IRentalsRepository } from "@modules/rentals/repositories/IRentalsRepository";
-import { AppError } from "@shared/errors/AppError";
 
-dayjs.extend(utc);
-
+@injectable()
 class CreateRentalUseCase {
   constructor(
-    private rentalsRepository: IRentalsRepository
+    @inject('RentalsRepository')
+    private rentalsRepository: IRentalsRepository,
+    @inject('DateProvider')
+    private dateProvider: IDateProvider
   ) { }
 
   public async execute({
@@ -29,11 +30,13 @@ class CreateRentalUseCase {
     if (rentalOpenToUser) {
       throw new AppError('There is a rental in progress for user!');
     }
-    const expectedReturnDateFormat = dayjs(expected_return_date).utc().local().format();
 
-    const dateNow = dayjs().utc().local().format();
+    const dateNow = this.dateProvider.dateNow();
 
-    const compare = dayjs(expectedReturnDateFormat).diff(dateNow, 'hours');
+    const compare = this.dateProvider.compareInHours(
+      dateNow,
+      expected_return_date
+    );
 
     if (compare < minimumHour) {
       throw new AppError('Invalid return time');

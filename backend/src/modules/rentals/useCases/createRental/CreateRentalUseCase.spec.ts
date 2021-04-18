@@ -2,16 +2,19 @@ import dayjs from 'dayjs';
 import { FakeRentalsRepository } from "@modules/rentals/repositories/fakes/FakeRentalsRepository";
 import { AppError } from "@shared/errors/AppError";
 import { CreateRentalUseCase } from "./CreateRentalUseCase";
+import { FakeDateProvider } from '@modules/rentals/providers/DateProvider/fakes/FakeDateProvider';
 
 let createRentalUseCase: CreateRentalUseCase;
 let fakeRentalsRepository: FakeRentalsRepository;
+let fakeDateProvider: FakeDateProvider;
 
 describe('Create Rental', () => {
   const dayAdd24Hours = dayjs().add(1, 'day').toDate();
 
   beforeEach(() => {
     fakeRentalsRepository = new FakeRentalsRepository();
-    createRentalUseCase = new CreateRentalUseCase(fakeRentalsRepository);
+    fakeDateProvider = new FakeDateProvider();
+    createRentalUseCase = new CreateRentalUseCase(fakeRentalsRepository, fakeDateProvider);
   });
 
   it('should be able to create a new rental', async () => {
@@ -33,7 +36,7 @@ describe('Create Rental', () => {
         expected_return_date: dayAdd24Hours,
       });
 
-      const rental = await createRentalUseCase.execute({
+      await createRentalUseCase.execute({
         user_id: '12345',
         car_id: '123123',
         expected_return_date: dayAdd24Hours,
@@ -49,7 +52,7 @@ describe('Create Rental', () => {
         expected_return_date: dayAdd24Hours,
       });
 
-      const rental = await createRentalUseCase.execute({
+      await createRentalUseCase.execute({
         user_id: '54321',
         car_id: '123123',
         expected_return_date: dayAdd24Hours,
