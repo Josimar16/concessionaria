@@ -19,7 +19,7 @@ class CreateRentalUseCase {
     car_id,
     expected_return_date
   }: ICreateRentalDTO): Promise<Rental> {
-    const minimumHour = 24;
+    const minimumHour: number = 24;
 
     const carUnavailable = await this.rentalsRepository.findOpenRentalByCar(car_id);
     if (carUnavailable) {
