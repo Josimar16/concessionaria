@@ -15,6 +15,18 @@ services:
       - pgdata:/data/postgres
     networks:
       - rentx
+  
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "josimarjr479@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "jj1010aa"
+    ports:
+      - 9000:80
+    networks:
+      - rentx
 
   app:
     build: .
